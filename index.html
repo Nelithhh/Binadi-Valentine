@@ -1,0 +1,103 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binadi Binadi Binadi!!!!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff4d79, #ff80bf);
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            text-align: center;
+            color: white;
+        }
+        h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .yes {
+            background-color: #ff0055;
+            color: white;
+        }
+        .yes:hover {
+            background-color: #e6004c;
+        }
+        .no {
+            background-color: #ffffff;
+            color: #ff0055;
+            position: absolute;
+        }
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(1); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(0.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Patiyo Will you be my Valentine? ❤️</h1>
+        <div class="buttons">
+            <button class="yes" onclick="acceptLove()">Yes</button>
+            <button class="no" id="noButton">No</button>
+        </div>
+    </div>
+    <div class="hearts" id="hearts"></div>
+    <script>
+        const noButton = document.getElementById("noButton");
+        noButton.addEventListener("mouseover", function () {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+        
+        function acceptLove() {
+            document.body.innerHTML = '<h1 style="color: white; text-align: center; font-size: 3rem;">Yay! ❤️ Can’t wait for our date! 🎉</h1>';
+            createHearts();
+        }
+        
+        function createHearts() {
+            setInterval(() => {
+                const heart = document.createElement("div");
+                heart.className = "heart";
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+                document.getElementById("hearts").appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 200);
+        }
+    </script>
+</body>
+</html>
